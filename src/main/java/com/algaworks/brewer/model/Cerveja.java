@@ -9,6 +9,7 @@ public class Cerveja {
 	
 	private String nome;
 	
+	@NotBlank
 	private String descricao;
 	
 	public String getSku() {
