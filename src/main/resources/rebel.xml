@@ -13,11 +13,6 @@
 
 	<web>
 		<link target="/">
-			<dir name="D:/Users/heitorh3/Documents/Desenvolvimento/git/brewer/target/m2e-wtp/web-resources">
-				<exclude name="/"/>
-			</dir>
-		</link>
-		<link target="/">
 			<dir name="D:/Users/heitorh3/Documents/Desenvolvimento/git/brewer/src/main/webapp">
 			</dir>
 		</link>
