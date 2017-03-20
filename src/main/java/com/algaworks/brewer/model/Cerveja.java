@@ -6,7 +6,10 @@ public class Cerveja {
 	
 	@NotBlank
 	private String sku;
+	
 	private String nome;
+	
+	private String descricao;
 	
 	public String getSku() {
 		return sku;
@@ -23,5 +26,14 @@ public class Cerveja {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
 	
 }
