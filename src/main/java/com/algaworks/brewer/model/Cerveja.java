@@ -1,5 +1,7 @@
 package com.algaworks.brewer.model;
 
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Cerveja {
@@ -7,9 +9,10 @@ public class Cerveja {
 	@NotBlank
 	private String sku;
 	
+	@NotBlank
 	private String nome;
 	
-	@NotBlank
+	@Size(min = 1, max = 100)
 	private String descricao;
 	
 	public String getSku() {
