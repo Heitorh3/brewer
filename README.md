@@ -9,24 +9,21 @@ Este arquivo versa sobre as peculiaridades do sistema.
 * [Repositório github dor projeto](https://github.com/Heitorh3/brewer.git)
 * Sistema desenvolvido em Java 1.8 Spring MVC - 4.3.0.RELEASE + Bootstrap 3 + Thymelead - 3.0.3.RELEASE com um layout responsivo e banco de dados Mysql.
 
-## Configurações do projeto ##
+### Configurações do projeto ##
 
-** Instruçõe de como configurar Configuração do jRebel **
-
+#### Instruçõe de como configurar Configuração do jRebel
 	Propriedade que deve ser adicionando no arquivo de configuração apontando para o workspace do eclipse.
 	rebel.project.path=C:\\Users\\Heitor\\Documents\\Desenvolvimento\\
 	
 	Localização do arquivo de propriedade do jRebel - (jrebel.properties)
 	C:\Users\Heitor\.jrebel
 
-** Plugin Thymelead para eclipse **
-
+#### Plugin Thymelead para eclipse 
 	Nome: Thymeleaf Eclipse Plugin
 	URL: http://www.thymeleaf.org/eclipse-plugin-update-site/
 
 
-** Layout do projeto **
-
+#### Layout do projeto 
 	http://alga.works/sws-layout
 	
 	
