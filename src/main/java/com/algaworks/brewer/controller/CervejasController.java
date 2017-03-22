@@ -29,4 +29,9 @@ public class CervejasController {
 		attributes.addFlashAttribute("mensagem", "Cerveja cadastrada com sucesso.");
 		return "redirect:/cervejas/novo";
 	}
+	
+	@RequestMapping(value = "/cervejas/cadastro")
+	public String cadastro(){
+		return "cerveja/cadastro-produto";
+	}
 }
