@@ -12,6 +12,7 @@ Este arquivo versa sobre as peculiaridades do sistema.
 ### Configurações do projeto ###
 
 *** Instruçõe de como configurar Configuração do jRebel ***
+
 	Propriedade que deve ser adicionando no arquivo de configuração apontando para o workspace do eclipse.
 	rebel.project.path=C:\\Users\\Heitor\\Documents\\Desenvolvimento\\
 	
@@ -19,11 +20,13 @@ Este arquivo versa sobre as peculiaridades do sistema.
 	C:\Users\Heitor\.jrebel
 
 *** Plugin Thymelead para eclipse ***
+
 	Nome: Thymeleaf Eclipse Plugin
 	URL: http://www.thymeleaf.org/eclipse-plugin-update-site/
 
 
 *** Layout do projeto ***
+
 	http://alga.works/sws-layout
 	
 	
