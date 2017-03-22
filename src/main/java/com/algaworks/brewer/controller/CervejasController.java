@@ -30,8 +30,4 @@ public class CervejasController {
 		return "redirect:/cervejas/novo";
 	}
 	
-	@RequestMapping(value = "/cervejas/cadastro")
-	public String cadastro(){
-		return "cerveja/cadastro-produto";
-	}
 }
