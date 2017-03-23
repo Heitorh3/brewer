@@ -33,13 +33,15 @@
 	
 		<form  method="POST" th:object="${cliente}" class="form-vertical  js-form-loading">
 			
-			<div class="form-group">
-				<label for="nome">Nome</label>
-				<input id="nome" type="text" class="form-control"/>
+			<div class="row">
+				<div class="form-group col-sm-12">
+					<label for="nome">Nome</label>
+					<input id="nome" type="text" class="form-control" autofocus="autofocus"/>
+				</div>
 			</div>
 			
 			<div class="row">
-				<div class="col-lg-3 col-sm-6  form-group">
+				<div class="col-sm-4  form-group">
 					<label for="tipo">Tipo pessoa</label>
 					
 					<div>
@@ -54,7 +56,7 @@
 					</div>
 					
 				</div>
-				<div class="col-lg-9 col-sm-6  form-group">
+				<div class="col-sm-8  form-group">
 					<div class="form-group">
 						<label for="cpf-cnpj">CPF/CNPJ</label>
 						<input id="cpf-cnpj" type="text" class="form-control"/>
@@ -63,14 +65,14 @@
 			</div>
 	
 			<div class="row">
-				<div class="col-sm-3  form-group">
+				<div class="col-sm-4  form-group">
 					<div class="form-group">
 						<label for="telefone">Telefone</label>
 						<input id="telefone" type="text" class="form-control">
 					</div>
 				</div>
 				
-				<div class="col-sm-9  form-group">
+				<div class="col-sm-8  form-group">
 					<div class="form-group">
 						<label for="email">E-mail</label>
 						<input  id="email" type="text" class="form-control">
