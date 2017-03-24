@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.algaworks.brewer.model.Cidade;
 
 @Controller
-public class CidadeController {
+public class CidadesController {
 
 	@RequestMapping("/cidades/novo")
 	public String novo(Cidade cidade){
