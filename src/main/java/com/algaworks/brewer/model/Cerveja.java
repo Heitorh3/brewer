@@ -52,7 +52,7 @@ public class Cerveja implements Serializable {
 	private Integer quantidadeEstoque;
 	
 	@Enumerated(EnumType.STRING)
-	private Origem origen;
+	private Origem origem;
 	
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
@@ -126,11 +126,11 @@ public class Cerveja implements Serializable {
 	}
 
 	public Origem getOrigen() {
-		return origen;
+		return origem;
 	}
 
-	public void setOrigen(Origem origen) {
-		this.origen = origen;
+	public void setOrigen(Origem origem) {
+		this.origem = origem;
 	}
 
 	public Sabor getSabor() {

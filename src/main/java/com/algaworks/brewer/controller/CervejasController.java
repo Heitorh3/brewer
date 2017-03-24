@@ -28,8 +28,6 @@ public class CervejasController {
 		
 		cervejas.findAll();
 		
-		logger.error("Aqui é um log nivel error");
-		
 		return "cerveja/CadastroCerveja";
 	}
 	
