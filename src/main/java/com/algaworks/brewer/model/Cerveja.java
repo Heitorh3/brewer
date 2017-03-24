@@ -39,7 +39,7 @@ public class Cerveja implements Serializable {
 	@Size(min = 1, max = 100, message = "O tamanho da descrição de estar entre 1 e 100")
 	private String descricao;
 	
-	private Integer volume;
+	//private Integer volume;
 	
 	private BigDecimal valor;
 	
@@ -91,14 +91,6 @@ public class Cerveja implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Integer getVolume() {
-		return volume;
-	}
-
-	public void setVolume(Integer volume) {
-		this.volume = volume;
 	}
 
 	public BigDecimal getValor() {
