@@ -61,6 +61,7 @@ public class Cerveja implements Serializable {
 	@DecimalMax(value = "100.0", message = "A comissão deve  ser igual ou menorque 100")
 	private BigDecimal comissao;
 	
+	@NotNull(message = "A quantidade em estoque é obrigatório")
 	@Max(value = 9999, message = "A quantidade em estoque de ser menor que 9.999")
 	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
@@ -142,11 +143,11 @@ public class Cerveja implements Serializable {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
-	public Origem getOrigen() {
+	public Origem getOrigem() {
 		return origem;
 	}
 
-	public void setOrigen(Origem origem) {
+	public void setOrigem(Origem origem) {
 		this.origem = origem;
 	}
 
