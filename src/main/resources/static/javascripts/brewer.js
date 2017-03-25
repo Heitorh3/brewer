@@ -10,7 +10,7 @@ Brewer.Formatar = (function(){
 	Formatar.prototype.iniciar = function(){
 		this.decimal.maskMoney({ decimal: ',', thousands: '.' });
 		
-		this.plain.maskMoney({ precision: 0, thousands: '.' });
+		this.plain.maskMoney({ precision: 0, thousands: '.' ,  allowZero: true});
 	}
 
 	return Formatar;
