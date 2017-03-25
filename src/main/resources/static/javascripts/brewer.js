@@ -8,9 +8,9 @@ Brewer.Formatar = (function(){
 	}
 	
 	Formatar.prototype.iniciar = function(){
-		this.decimal.maskMoney();
+		this.decimal.maskMoney({ decimal: ',', thousands: '.' });
 		
-		this.plain.maskMoney({ precision: 0 });
+		this.plain.maskMoney({ precision: 0, thousands: '.' });
 	}
 
 	return Formatar;
