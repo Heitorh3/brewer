@@ -29,7 +29,6 @@ public class EstilosController {
 	@RequestMapping(value = "/estilos/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Estilo estilo, BindingResult result, RedirectAttributes attributes, Model model){
 		if(result.hasErrors()){
-			System.out.println(">> " + estilo.getNome());
 			model.addAttribute(estilo);
 			return novo(estilo);
 		}
