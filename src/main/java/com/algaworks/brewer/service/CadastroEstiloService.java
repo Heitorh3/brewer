@@ -17,7 +17,7 @@ public class CadastroEstiloService {
 	private Estilos estilos;
 	
 	@Transactional
-	public void salvar(Estilo estilo){
+	public Estilo salvar(Estilo estilo){
 		
 		Optional<Estilo>estiloOptional = estilos.findByNomeIgnoreCase(estilo.getNome());
 		
@@ -25,6 +25,6 @@ public class CadastroEstiloService {
 			throw new NomeEstiloJaCadastradoException("Nome estilo já cadastrado");
 		}
 		
-		estilos.save(estilo);
+		return estilos.saveAndFlush(estilo);
 	}
 }
