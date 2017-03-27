@@ -20,32 +20,23 @@ Este arquivo versa sobre as peculiaridades do sistema.
 	
 	Parametro que deve ser adicionado no arquivo rebel.xml 
 	
-	* ${rebel.project.path} 
+	${rebel.project.path} 
 		
 	Abaixo tem um exemplo de como o arquivo deve ficar.
-	
-	<?xml version="1.0" encoding="UTF-8"?>
+		
+	<classpath>
+		<dir name="${rebel.project.path}\brewer\target\classes">
+		</dir>
+	</classpath>
 
-		<!--
-		  This is the JRebel configuration file. It maps the running application to your IDE workspace, enabling JRebel reloading for this project.
-		  Refer to https://manuals.zeroturnaround.com/jrebel/standalone/config.html for more information.
-		-->
-		<application generated-by="eclipse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" 						xsi:schemaLocation="http://www.zeroturnaround.com http://update.zeroturnaround.com/jrebel/rebel-2_1.xsd">
+	<web>
+		<link target="/">
+			<dir name="${rebel.project.path}\brewer\src\main\webapp">
+			</dir>
+		</link>
+	</web>
 		
-			<classpath>
-				<dir name="${rebel.project.path}\brewer\target\classes">
-				</dir>
-			</classpath>
 		
-			<web>
-				<link target="/">
-					<dir name="${rebel.project.path}\brewer\src\main\webapp">
-					</dir>
-				</link>
-			</web>
-		
-		</application>
-	
 
 #### Plugin Thymelead para eclipse 
 	Nome: Thymeleaf Eclipse Plugin
