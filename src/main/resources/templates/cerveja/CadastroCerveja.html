@@ -102,7 +102,7 @@
 				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('comissao')}? has-error">
 					<label for="comissao" class="control-label">Comissão</label>
 					<div class="input-group">
-						<input id="comissao" type="text" class="form-control" th:field="*{comissao}"/>
+						<input id="comissao" type="text" class="form-control js-decimal" th:field="*{comissao}"/>
 						<div class="input-group-addon">%</div>						
 					</div>
 				</div>
