@@ -18,7 +18,9 @@ Este arquivo versa sobre as peculiaridades do sistema.
 	Localização do arquivo de propriedade do jRebel - (jrebel.properties)
 	C:\Users\Heitor\.jrebel
 	
-	### Parametro que deve ser adicionado no arquivo rebel.xml <<${rebel.project.path}>> 
+	Parametro que deve ser adicionado no arquivo rebel.xml 
+	
+	* ${rebel.project.path} 
 		
 	Abaixo tem um exemplo de como o arquivo deve ficar.
 	
