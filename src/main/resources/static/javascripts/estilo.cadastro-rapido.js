@@ -20,6 +20,8 @@ $(function(){
 	
 	function onModalClose(){
 		inputNomeEstilo.val('');
+		containerMensagemErro.addClass('hidden');
+		form.find('.form-group').removeClass('has-error');
 	}
 	
 	function onBotaSalvarClick(){
@@ -29,9 +31,11 @@ $(function(){
 			url: url,
 			method: 'POST',
 			contentType: 'application/json',
-			data: JSON.stringify({ nome: nomeEstilo }),
+			data: JSON.stringify({ 
+				nome: nomeEstilo 
+				}),
 			error: onErroSalvandoEstilo,
-			sucess: onEstiloSalvo
+			success: onEstiloSalvo
 		});
 	}
 	
@@ -43,7 +47,11 @@ $(function(){
 		form.find('.form-group').addClass('has-error');
 	}
 	
-	function onEstiloSalvo(){
+	function onEstiloSalvo(estilo){
+		var comboEstilo = $('#estilo');
+		comboEstilo.append('<option value=' + estilo.codigo + '>'+ estilo.nome + '</option>');
+		comboEstilo.val(estilo.codigo);
 		
+		modal.modal('hide');
 	}
 });
