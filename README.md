@@ -11,7 +11,7 @@ Este arquivo versa sobre as peculiaridades do sistema.
 
 ### Configurações do projeto ##
 
-#### Instruçõe de como configurar Configuração do jRebel
+#### Instruçõe de como configurar o jRebel
 	Propriedade que deve ser adicionando no arquivo de configuração apontando para o workspace do eclipse.
 	rebel.project.path=C:\\Users\\Heitor\\Documents\\Desenvolvimento\\
 	
