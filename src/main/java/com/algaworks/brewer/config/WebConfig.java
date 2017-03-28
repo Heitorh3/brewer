@@ -29,7 +29,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.algaworks.brewer.controller.CervejasController;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
-import com.algaworks.brewer.thymelead.BrewerDialect;
+import com.algaworks.brewer.thymeleaf.BrewerDialect;
 
 @Configuration
 @ComponentScan(basePackageClasses = { CervejasController.class })

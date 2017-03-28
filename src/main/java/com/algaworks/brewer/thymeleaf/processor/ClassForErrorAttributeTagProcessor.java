@@ -1,4 +1,4 @@
-package com.algaworks.brewer.thymelead.processor;
+package com.algaworks.brewer.thymeleaf.processor;
 
 import org.thymeleaf.context.ITemplateContext;
 import org.thymeleaf.engine.AttributeName;
