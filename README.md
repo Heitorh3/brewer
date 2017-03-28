@@ -36,7 +36,11 @@ Este arquivo versa sobre as peculiaridades do sistema.
 		</link>
 	</web>
 		
-		
+#### Configuração do Flyway no eclipse
+	flyway.user = root
+	flyway.password = *******
+	flyway.url = jdbc:mysql://localhost:3306/brewer
+
 
 #### Plugin Thymelead para eclipse 
 	Nome: Thymeleaf Eclipse Plugin
