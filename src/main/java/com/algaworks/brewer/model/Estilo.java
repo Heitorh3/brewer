@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -19,9 +17,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name = "estilo")
 public class Estilo implements Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,12 +30,6 @@ public class Estilo implements Serializable{
 	
 	@OneToMany(mappedBy = "estilo")
 	private List<Cerveja> cervejas;
-
-	@PrePersist
-	@PreUpdate
-	private void prePersisteUpdate(){
-		this.nome = nome.toUpperCase();
-	}
 
 	public Long getCodigo() {
 		return codigo;
