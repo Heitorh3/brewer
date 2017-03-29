@@ -112,11 +112,11 @@
 					<label for="estoque" class="control-label">Estoque</label>
 					<input id="estoque" type="text" class="form-control js-plain"  th:field="*{quantidadeEstoque}"/>
 				</div>
-			
+				
 			</div>
 			
-			<div class="row">
-				<div class="form-group col-sm12">
+			<div>
+				<div class="col-sm12  form-group">
 					<label class="control-label">Foto</label>
 					
 					<div id="upload-drop" class="bw-upload">
@@ -125,7 +125,8 @@
 						<a class="bw-upload-form-file">selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
 					</div>
 				</div>
-			</div>
+			</div>		
+		
 			<div class="form-group">
 				<button class="btn  btn-primary" type="submit">Salvar</button>
 			</div>
@@ -139,7 +140,7 @@
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
 	<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
-	<!-- <script th:src="@{/javascripts/vendors/upload.min.js}"></script> -->
+	<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
 	
 	<script>
 		$(function() {
