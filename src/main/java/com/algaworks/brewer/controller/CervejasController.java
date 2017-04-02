@@ -3,6 +3,8 @@ package com.algaworks.brewer.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -56,14 +58,16 @@ public class CervejasController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult result){
+	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult result, @PageableDefault(size  = 2) Pageable pageable){
 		ModelAndView mv = new ModelAndView("cerveja/PesquisaCervejas");
 		mv.addObject("estilos", estilos.findAll());
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("origens", Origem.values());
 		
+		System.out.println(">>> pageNumber: " + pageable.getPageNumber());
+		System.out.println(">>> pageSize: " + pageable.getPageSize());
 		
-		mv.addObject("cervejas", cervejas.filtra(cervejaFilter));
+		mv.addObject("cervejas", cervejas.filtra(cervejaFilter, pageable));
 		return mv;
 	}
 	
