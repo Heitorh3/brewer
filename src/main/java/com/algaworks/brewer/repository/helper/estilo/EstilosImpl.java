@@ -16,8 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.algaworks.brewer.model.Estilo;
+import com.algaworks.brewer.repository.filter.EstiloFilter;
 
-public class EstilosQueriesImpl implements EstilosQueries {
+public class EstilosImpl implements EstilosQueries {
 	
 	@PersistenceContext
 	private EntityManager manager;
@@ -25,7 +26,7 @@ public class EstilosQueriesImpl implements EstilosQueries {
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	@Override
-	public Page<Estilo> filtra(Estilo estilo, Pageable pageable) {
+	public Page<Estilo> filtra(EstiloFilter filtro, Pageable pageable) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Estilo.class);
 		
 		int paginaAtual = pageable.getPageNumber();
@@ -42,11 +43,11 @@ public class EstilosQueriesImpl implements EstilosQueries {
 			criteria.addOrder(order.isAscending() ? Order.asc(property) : Order.desc(property));
 		}
 		
-		adicionarFiltro(estilo, criteria);
-		return new PageImpl<>(criteria.list(), pageable, total(estilo));
+		adicionarFiltro(filtro, criteria);
+		return new PageImpl<>(criteria.list(), pageable, total(filtro));
 	}
 
-	private Long total(Estilo filtro) {
+	private Long total(EstiloFilter filtro) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Estilo.class);
 		this.adicionarFiltro(filtro, criteria);
 		criteria.setProjection(Projections.rowCount());
@@ -54,10 +55,10 @@ public class EstilosQueriesImpl implements EstilosQueries {
 		return (Long)criteria.uniqueResult();
 	}
 	
-	private void adicionarFiltro(Estilo estilo, Criteria criteria) {
-		if(estilo != null){
-			if (!StringUtils.isEmpty(estilo.getNome())) {
-				criteria.add(Restrictions.eq("nome", estilo.getNome()));
+	private void adicionarFiltro(EstiloFilter filtro, Criteria criteria) {
+		if(filtro != null){
+			if (!StringUtils.isEmpty(filtro.getNome())) {
+				criteria.add(Restrictions.eq("nome", filtro.getNome()));
 			}
 		}
 	}

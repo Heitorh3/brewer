@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.algaworks.brewer.controller.page.PageWrapper;
 import com.algaworks.brewer.model.Estilo;
 import com.algaworks.brewer.repository.Estilos;
+import com.algaworks.brewer.repository.filter.EstiloFilter;
 import com.algaworks.brewer.service.CadastroEstiloService;
 import com.algaworks.brewer.service.exception.NomeEstiloJaCadastradoException;
 
@@ -72,10 +73,12 @@ public class EstilosController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(Estilo estilo,BindingResult result, @PageableDefault(size = 2 )Pageable pageable, HttpServletRequest httpServletRequest){
+	public ModelAndView pesquisar(EstiloFilter estiloFilter,BindingResult result, @PageableDefault(size = 2 )Pageable pageable, HttpServletRequest httpServletRequest){
 		ModelAndView mv = new ModelAndView("estilo/PesquisaEstilos");
 		
-		PageWrapper<Estilo> pagina = new PageWrapper<Estilo>(estilos.filtra(estilo, pageable), httpServletRequest);
+		
+		
+		PageWrapper<Estilo> pagina = new PageWrapper<Estilo>(estilos.filtra(estiloFilter, pageable), httpServletRequest);
 		
 		mv.addObject("pagina", pagina);
 		return mv;
