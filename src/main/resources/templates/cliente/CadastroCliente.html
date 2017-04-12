@@ -3,6 +3,7 @@
 	  	xmlns:th="http://www.thymeleaf.org"
 	  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  	layout:decorate="~{layout/LayoutPadrao}"
+	  	xmlns:data="http://www.thymeleaf.org/extras/data"
 	  	xmlns:brewer="http://brewer.algaworks.com">
 	  	
 <head>
@@ -37,14 +38,14 @@
 					<label for="tipo" class="control-label">Tipo pessoa</label>
 					
 					<div>
-						<div class="radio radio-inline">
-							<input id="id_fisica" type="radio" class="js-radio-tipo-pessoa" name="tipoPessoa" data-documento="CPF" data-mascara="000.000.000-00"/>
-							<label for="id_fisica" class="control-label">Fisíca</label>						
-						</div>
-						<div class="radio radio-inline">
-							<input id="id_juridica" type="radio" class="js-radio-tipo-pessoa" name="tipoPessoa" data-documento="CNPJ" data-mascara="00.000.000-0000-00"/>
-							<label for="id_juridica" class="control-label">Juridíca</label>						
-						</div>
+						<th:block th:each="tipoPessoa : ${tiposPessoa}">
+							<div class="radio radio-inline">
+								<input th:id="|id_${tipoPessoa}|" type="radio" class="js-radio-tipo-pessoa" 
+										name="tipoPessoa" data:documento="${tipoPessoa.documento}" data:mascara="${tipoPessoa.mascara}"/>
+								<label th:for="|id_${tipoPessoa}|" class="control-label" th:text="${tipoPessoa.descricao}">Fisíca</label>						
+							</div>
+						</th:block>
+						
 					</div>
 					
 				</div>
