@@ -106,9 +106,9 @@
 				
 				<div class="col-sm-4  form-group">
 					<label for="estado">Estado</label>
-					<select id="estado" class="form-control">
+					<select id="sabor" class="form-control">
 						<option value="">Selecione o estado</option>
-						<option value="1">Minas Gerais</option>
+						<option th:each="estado : ${estados}" th:value="${estado}" th:text="${estado.nome}">Adocicada</option>
 					</select>
 				</div>
 				
