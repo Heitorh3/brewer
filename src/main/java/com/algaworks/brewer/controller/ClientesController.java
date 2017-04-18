@@ -14,6 +14,7 @@ import com.algaworks.brewer.model.Cliente;
 import com.algaworks.brewer.model.TipoPessoa;
 import com.algaworks.brewer.repository.Estados;
 import com.algaworks.brewer.service.CadastroClienteService;
+import com.algaworks.brewer.service.exception.CpfCnpjClienteJaCadastradoException;
 
 @Controller
 @RequestMapping("/clientes")
@@ -39,8 +40,12 @@ public class ClientesController {
 		if(result.hasErrors()){
 			return novo(cliente);
 		}
-		
-		cadastroClienteServie.salvar(cliente);
+		try {
+			cadastroClienteServie.salvar(cliente);
+		}catch(CpfCnpjClienteJaCadastradoException e){
+			result.rejectValue("cpfOuCnpj", e.getMessage(), e.getMessage());
+			return novo(cliente);
+		}
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso");
 		return new ModelAndView("redirect:/clientes/novo");
 	}

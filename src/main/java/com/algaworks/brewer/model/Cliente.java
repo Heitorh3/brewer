@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -60,7 +61,7 @@ public class Cliente implements Serializable{
 	
 	@PrePersist @PreUpdate
 	private void prePersistPreUpdate(){
-		this.cpfOuCnpj = this.cpfOuCnpj.replaceAll("\\.|-|/", "");
+		this.cpfOuCnpj = TipoPessoa.removerFormatacao(this.cpfOuCnpj);
 	}
 
 	public Long getCodigo() {
@@ -119,6 +120,11 @@ public class Cliente implements Serializable{
 		this.endereco = endereco;
 	}
 
+	@Transient
+	public String getCpfSemFormatacao(){
+		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
