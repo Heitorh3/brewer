@@ -11,9 +11,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.group.GroupSequenceProvider;
+
+import com.algaworks.brewer.model.validation.group.CnpjGgroup;
+import com.algaworks.brewer.model.validation.group.CpfGroup;
+import com.algaworks.brewer.model.validation.ClienteGroupSequenceProvider;
 
 @Entity
 @Table(name = "cliente")
+@GroupSequenceProvider(ClienteGroupSequenceProvider.class)
 public class Cliente implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -21,20 +33,28 @@ public class Cliente implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+
+	@NotBlank(message = "O nome é obrigatório")
 	private String nome;
 
+	@NotNull(message = "O Tipo de pessoa é obrigatório")
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_pessoa")
 	private TipoPessoa tipoPessoa;
 	
+	@NotNull(message = "CPF/CNPJ é obrigatório")
+	@CPF(groups = CpfGroup.class)
+	@CNPJ(groups = CnpjGgroup.class)
 	@Column(name = "cpf_cnpj")
 	private String cpfOuCnpj;
 	
 	private String telefone;
+	
+	@Email(message = "E-mail inválido")
 	private String email;
 	
 	@Embedded
-	private Edereco endero;
+	private Edereco endereco;
 
 	public Long getCodigo() {
 		return codigo;
@@ -84,12 +104,12 @@ public class Cliente implements Serializable{
 		this.email = email;
 	}
 
-	public Edereco getEndero() {
-		return endero;
+	public Edereco getEndereco() {
+		return endereco;
 	}
 
-	public void setEndero(Edereco endero) {
-		this.endero = endero;
+	public void setEndereco(Edereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
