@@ -1,39 +1,33 @@
-
 /*
-#########################
+######################
 # UTILIDADES
-#########################
+######################
 */
-
 .bw-glyphicon-large {
 	font-size: 18px;
 }
 
-.bw-required > .control-label:after{
-	content: "*"
+.bw-required > .control-label:after {
+	content: "*";
 }
 
+
 /*
-#########################
+######################
 # COMPONENTES
-#########################
+######################
 */
 
-/*Fild Action*/
+/* Field Action */
 .bw-field-action {
 	display: flex;
 }
 
 .bw-field-action__icon {
-	margin: 6px 0 0 5px;	
+	margin: 6px 0 0 5px;
 }
 
-/*
-#########################
-# UPLOAD
-#########################
-*/
-
+/* Upload */
 .bw-upload {
 	padding: 15px;
 	
@@ -64,12 +58,7 @@
     font-size: 500px;
 }
 
-/*
-#########################
-# TABELA SIMPLES
-#########################
-*/
-
+/* Tabela Simples */
 .bw-tabela-simples {
 	margin-top: 15px;
 }
@@ -87,10 +76,16 @@
 
 /*
 ###################
-# Colunas - Pesquisa de Cervejas
+# PÁGINAS DO SISTEMA
 ###################
 */
 
+/* Colunas comuns */
+.table-col-acoes {
+	width: 80px;
+}
+
+/* Colunas - Pesquisa de Cervejas */
 .table-cervejas-col-foto {
 	min-width: 50px;
 	width: 50px
@@ -120,4 +115,29 @@
 
 .table-cervejas-col-acoes {
 	width: 80px;
+}
+
+/* Colunas - Pesquisa de Estilos */
+.table-estilos-col-codigo {
+	width: 80px;
+}
+
+/* Colunas - Pesquisa de Clientes */
+.table-clientes-col-nome {
+	
+}
+
+.table-clientes-col-tipo-pessoa {
+	width: 120px;
+	text-align: center;
+}
+
+.table-clientes-col-cpf-cnpj {
+	width: 140px;
+	text-align: right;
+}
+
+.table-clientes-col-telefone {
+	width: 140px;
+	text-align: right;
 }

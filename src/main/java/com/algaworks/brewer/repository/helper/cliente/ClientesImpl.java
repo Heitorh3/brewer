@@ -35,6 +35,8 @@ public class ClientesImpl implements ClientesQueries {
 		
 		paginacaoUtil.preparar(criteria, pageable);
 		
+		adicionarFiltro(filtro, criteria);
+		
 		return new PageImpl<>(criteria.list(), pageable, total(filtro));
 	}
 
