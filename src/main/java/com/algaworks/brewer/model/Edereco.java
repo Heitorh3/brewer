@@ -67,6 +67,6 @@ public class Edereco implements Serializable{
 			return this.cidade.getNome() + "/" + this.cidade.getEstado().getSigla();
 		}
 		
-		return null;
+		return "";
 	}
 }
