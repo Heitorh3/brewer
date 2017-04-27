@@ -2,12 +2,16 @@ package com.algaworks.brewer.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,9 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.algaworks.brewer.controller.page.PageWrapper;
 import com.algaworks.brewer.model.Cidade;
 import com.algaworks.brewer.repository.Cidades;
 import com.algaworks.brewer.repository.Estados;
+import com.algaworks.brewer.repository.filter.CidadeFilter;
 import com.algaworks.brewer.service.CadastroCidadeService;
 import com.algaworks.brewer.service.exception.NomeCidadeJaCadastradoException;
 
@@ -57,6 +63,19 @@ public class CidadesController {
 		attributes.addFlashAttribute("mensagem","Cidade cadastrada com sucesso");
 		
 		return new ModelAndView("redirect:/cidades/novo");
+	}
+	
+	@GetMapping
+	public ModelAndView pesquisar(CidadeFilter filtro, BindingResult result, @PageableDefault(size  = 10) Pageable pageable,
+			HttpServletRequest httpServletRequest){
+		
+		ModelAndView mv = new ModelAndView("cidade/PesquisaCidades");
+		mv.addObject("estados", estados.findAll());
+		
+		PageWrapper<Cidade> pagina = new PageWrapper<Cidade>(cidades.filtrar(filtro, pageable), httpServletRequest);
+		
+		mv.addObject("pagina", pagina);
+		return mv;
 	}
 	
 	@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
