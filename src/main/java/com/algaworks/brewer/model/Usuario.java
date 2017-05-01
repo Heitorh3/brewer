@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -40,11 +41,12 @@ public class Usuario implements Serializable {
 	
 	private String senha;
 	
+	@Transient
 	private String confirmacaoSenha;
 	
 	private Boolean ativo;
 	
-	@NotNull(message = "Selecione pelo menos um grupo")
+	//@NotNull(message = "Selecione pelo menos um grupo")
 	@ManyToMany
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn (name = "codigo_usuario")
 								,inverseJoinColumns = @JoinColumn (name = "codigo_grupo"))
