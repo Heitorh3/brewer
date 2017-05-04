@@ -38,13 +38,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/cidades/nova").hasRole("CADASTRA_CIDADE")
+				.antMatchers("/cidades/nova").hasRole("CADASTRAR_CIDADE")
 				.antMatchers("/usuarios/novo").hasRole("CADASTRAR_USUARIO")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
+				.and()
+			.exceptionHandling()
+				.accessDeniedPage("/403")
 				.and()
 			.csrf().disable();
 	}
