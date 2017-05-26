@@ -64,7 +64,7 @@ public class UsuariosController {
 	public ModelAndView pesquisar(UsuarioFilter usuarioFilter, BindingResult result){
 		ModelAndView mv = new ModelAndView("usuario/PesquisaUsuarios");
 		
-		mv.addObject("usuarios", usuarios.findAll());
+		mv.addObject("usuarios", usuarios.filtrar(usuarioFilter));
 		mv.addObject("grupos", grupos.findAll());
 		
 		return mv;
