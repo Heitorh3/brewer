@@ -71,8 +71,6 @@
 				    </div>
 				</div>
 				
-				<th:block th:replace="cliente/PesquisaRapidaClientes :: pesquisaRapidaClientes"></th:block>
-				
 				<div class="form-group  col-sm-4 bw-required">
 					<label class="control-label" for="valorFrete">Valor do frete</label>
 					<div class="input-group">
@@ -158,17 +156,22 @@
 			</div>
 		</form>
 	</div>
+	
+	<th:block th:replace="cliente/PesquisaRapidaClientes :: pesquisaRapidaClientes"></th:block>
+	
 </section>
 
 <th:block layout:fragment="javascript-extra">
-<script>
-$(function() {
-	$('.js-abas-venda a').click(function (e) {
-		e.preventDefault();
-		$(this).tab('show');
+	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
+	<script th:src="@{/javascripts/cliente.pesquisa-rapida.js}"></script>
+	<script>
+	$(function() {
+		$('.js-abas-venda a').click(function (e) {
+			e.preventDefault();
+			$(this).tab('show');
+		});
 	});
-});
-</script>
+	</script>
 </th:block>
 
 </html>

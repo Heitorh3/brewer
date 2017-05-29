@@ -25,6 +25,7 @@ import org.hibernate.validator.group.GroupSequenceProvider;
 
 import com.algaworks.brewer.model.validation.group.CnpjGgroup;
 import com.algaworks.brewer.model.validation.group.CpfGroup;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.algaworks.brewer.model.validation.ClienteGroupSequenceProvider;
 
 @Entity
@@ -57,6 +58,7 @@ public class Cliente implements Serializable{
 	@Email(message = "E-mail inválido")
 	private String email;
 	
+	@JsonIgnore
 	@Embedded
 	private Edereco endereco;
 	
