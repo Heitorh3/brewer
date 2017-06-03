@@ -19,7 +19,7 @@ import com.algaworks.brewer.security.AppUserDetailsService;
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = AppUserDetailsService.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers("/cidades/nova").hasRole("CADASTRAR_CIDADE")
-				.antMatchers("/usuarios/novo").hasRole("CADASTRAR_USUARIO")
+				.antMatchers("/usuarios/**").hasRole("CADASTRAR_USUARIO")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement()
 				.invalidSessionUrl("/login");
 	}
-		
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
