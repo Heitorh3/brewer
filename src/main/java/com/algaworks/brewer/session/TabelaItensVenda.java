@@ -3,6 +3,7 @@ package com.algaworks.brewer.session;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
@@ -24,12 +25,39 @@ public class TabelaItensVenda {
 	}
 
 	public void adicionarItem(Cerveja cerveja, Integer quantidade) {
-		ItenVenda iten = new ItenVenda();
+		Optional<ItenVenda> itenVendaOptional = buscarItemPorCerveja(cerveja);
 		
-		iten.setCerveja(cerveja);
-		iten.setQuantidade(quantidade);
-		iten.setValorUnitario(cerveja.getValor());
+		ItenVenda itenVenda = null;
+		if(itenVendaOptional.isPresent()){
+			itenVenda = itenVendaOptional.get();
+			itenVenda.setQuantidade(itenVenda.getQuantidade() + quantidade);
+		}else{
+			itenVenda = new ItenVenda();
 		
-		itens.add(iten);
+			itenVenda.setCerveja(cerveja);
+			itenVenda.setQuantidade(quantidade);
+			itenVenda.setValorUnitario(cerveja.getValor());
+			
+			itens.add(0,itenVenda);
+		}
+	}
+
+	public void alterarQuantidadeItens(Cerveja cerveja, Integer quantidade){
+		ItenVenda itenVenda = buscarItemPorCerveja(cerveja).get();
+		itenVenda.setQuantidade(quantidade);
+	}
+
+	public List<ItenVenda> getItens() {
+		return itens;
+	}
+
+	public int total() {
+		return itens.size();
+	}
+	
+	private Optional<ItenVenda> buscarItemPorCerveja(Cerveja cerveja) {
+		return itens.stream()
+				.filter(i -> i.getCerveja().equals(cerveja))
+				.findAny();
 	}
 }
