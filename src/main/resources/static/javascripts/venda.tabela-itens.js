@@ -24,6 +24,11 @@ Brewer.TabelaItens = (function() {
 	function onItemAtualizadoNoServidor(html){
 		this.tabelaCervejaContainer.html(html);
 		$('.js-tabela-cerveja-quantidade-item').on('change', onQuantidadeItemAlterado.bind(this));
+		$('.js-tabela-item').on('click', onClick);
+	}
+	
+	function onClick(evento){
+		$(this).toggleClass('solicitando-exclusao');
 	}
 	
 	function onQuantidadeItemAlterado(evento){
