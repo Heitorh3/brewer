@@ -4,6 +4,9 @@ Brewer.TabelaItens = (function() {
 		this.autocomplete = autocomplete;
 		this.tabelaCervejaContainer = $(".js-tabela-cervejas-container");
 		this.uuid = $('#uuid').val();
+		
+		this.emitter = $({});
+		this.on = this.emitter.on.bind(this.emitter);
 	}
 	
 	TabelaItens.prototype.iniciar = function() {
@@ -25,9 +28,16 @@ Brewer.TabelaItens = (function() {
 	
 	function onItemAtualizadoNoServidor(html){
 		this.tabelaCervejaContainer.html(html);
-		$('.js-tabela-cerveja-quantidade-item').on('change', onQuantidadeItemAlterado.bind(this));
-		$('.js-tabela-item').on('dblclick', onDoubleClick);
+		
+		var quantidadeItemInput = $('.js-tabela-cerveja-quantidade-item'); 
+		quantidadeItemInput.on('change', onQuantidadeItemAlterado.bind(this));
+		quantidadeItemInput.maskMoney({ precision:0, thousands: ''});
+		
+		var tabelaIten = $('.js-tabela-item');
+		tabelaIten.on('dblclick', onDoubleClick);
 		$('.js-exclusao-item-btn').on('click', onExclusaoItemClick.bind(this));
+		
+		this.emitter.trigger('tabela-itens-atualizada', tabelaIten.data('valorTotal'));
 	}
 	
 	function onDoubleClick(evento){
@@ -48,6 +58,12 @@ Brewer.TabelaItens = (function() {
 	function onQuantidadeItemAlterado(evento){
 		var input = $(evento.target);
 		var quantidade = input.val();
+		
+		if(quantidade <= 0){
+			input.val(1);
+			quantidade = 1;
+		}
+		
 		var codigoCerveja = input.data('codigo-cerveja');
 		
 		var resposta = $.ajax({
