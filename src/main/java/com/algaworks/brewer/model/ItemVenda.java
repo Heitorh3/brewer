@@ -2,7 +2,7 @@ package com.algaworks.brewer.model;
 
 import java.math.BigDecimal;
 
-public class ItenVenda {
+public class ItemVenda {
 
 	private Long codigo;
 	private Integer quantidade;
@@ -53,7 +53,7 @@ public class ItenVenda {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ItenVenda other = (ItenVenda) obj;
+		ItemVenda other = (ItemVenda) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

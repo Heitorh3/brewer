@@ -7,12 +7,12 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 import com.algaworks.brewer.model.Cerveja;
-import com.algaworks.brewer.model.ItenVenda;
+import com.algaworks.brewer.model.ItemVenda;
 
 class TabelaItensVenda {
 	
 	private String uuid;
-	public List<ItenVenda> itens = new ArrayList<>();
+	public List<ItemVenda> itens = new ArrayList<>();
 	
 	
 	public TabelaItensVenda(String uuid) {
@@ -21,20 +21,20 @@ class TabelaItensVenda {
 
 	public BigDecimal getValorTotal(){
 		return itens.stream()
-				.map(ItenVenda::getValorTotal)
+				.map(ItemVenda::getValorTotal)
 				.reduce(BigDecimal::add)
 				.orElse(BigDecimal.ZERO);
 	}
 
 	public void adicionarItem(Cerveja cerveja, Integer quantidade) {
-		Optional<ItenVenda> itenVendaOptional = buscarItemPorCerveja(cerveja);
+		Optional<ItemVenda> itenVendaOptional = buscarItemPorCerveja(cerveja);
 		
-		ItenVenda itenVenda = null;
+		ItemVenda itenVenda = null;
 		if(itenVendaOptional.isPresent()){
 			itenVenda = itenVendaOptional.get();
 			itenVenda.setQuantidade(itenVenda.getQuantidade() + quantidade);
 		}else{
-			itenVenda = new ItenVenda();
+			itenVenda = new ItemVenda();
 		
 			itenVenda.setCerveja(cerveja);
 			itenVenda.setQuantidade(quantidade);
@@ -53,11 +53,11 @@ class TabelaItensVenda {
 	}
 
 	public void alterarQuantidadeItens(Cerveja cerveja, Integer quantidade){
-		ItenVenda itenVenda = buscarItemPorCerveja(cerveja).get();
+		ItemVenda itenVenda = buscarItemPorCerveja(cerveja).get();
 		itenVenda.setQuantidade(quantidade);
 	}
 
-	public List<ItenVenda> getItens() {
+	public List<ItemVenda> getItens() {
 		return itens;
 	}
 
@@ -65,7 +65,7 @@ class TabelaItensVenda {
 		return itens.size();
 	}
 	
-	private Optional<ItenVenda> buscarItemPorCerveja(Cerveja cerveja) {
+	private Optional<ItemVenda> buscarItemPorCerveja(Cerveja cerveja) {
 		return itens.stream()
 				.filter(i -> i.getCerveja().equals(cerveja))
 				.findAny();
