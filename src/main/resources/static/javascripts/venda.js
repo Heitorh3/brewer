@@ -38,6 +38,8 @@ Brewer.Venda = (function() {
 		var valorTotal = this.valorTotalItens + this.valorFrete - this.valorDesconto;
 		this.valorTotalBox.html(Brewer.formatarMoeda(valorTotal));
 		
+		console.log("Valor Total: ", valorTotal);
+		
 		this.valorTotalBoxContainer.toggleClass('negativo', valorTotal < 0);
 	}
 	
