@@ -35,13 +35,9 @@ public class CadastroVendaService {
 	@Transactional
 	public void emitir(Venda venda) {
 		
-		if(venda.isNova()){
-			venda.setDataCriacao(LocalDateTime.now());
-		}
-		
 		venda.setStatus(StatusVenda.EMITIDA);
 		
-		this.vendas.save(venda);
+		salvar(venda);
 		
 	}
 
