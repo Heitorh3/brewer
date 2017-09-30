@@ -13,7 +13,7 @@ public class CervejaListener {
 	private FotoStorage fotoStorage;
 	
 	
-	@EventListener(condition = "#evento.temFoto()")
+	@EventListener(condition = "#evento.temFoto() and #evento.isNovaFoto()")
 	public void cervejaSalva(CervejaSalvaEvent evento){
 		System.out.println("Tem foto sim => " + evento.getCerveja().getNome());
 		
