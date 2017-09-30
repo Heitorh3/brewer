@@ -9,4 +9,5 @@ import com.algaworks.brewer.repository.helper.cerveja.CervejasQueries;
 @Repository
 public interface Cervejas extends JpaRepository<Cerveja, Long>, CervejasQueries {
 
+
 }
