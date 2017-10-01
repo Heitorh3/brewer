@@ -35,7 +35,7 @@ Brewer.UploadFoto = (function(){
 	
 	function onUploadCompleto(resposta){
 		this.novaFoto.val('true');
-		renderizarFoto(this, resposta);
+		renderizarFoto.call(this, resposta);
 	}
 	
 	function renderizarFoto(resposta) {
