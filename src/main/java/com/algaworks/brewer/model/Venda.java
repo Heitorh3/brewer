@@ -23,8 +23,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
 @Table(name = "venda")
+@DynamicUpdate
 public class Venda {
 	
 	@Id
@@ -202,6 +205,14 @@ public class Venda {
 	
 	public void calcularValorTotal(){
 		this.valorTotal = calcularValorTotal(getValorTotalItens(), getValorFrete(), getValorDesconto());
+	}
+	
+	public boolean isSalvarPermitido(){
+		return !status.equals(StatusVenda.CANCELADA);
+	}
+	
+	public boolean isSalvarProibido(){
+		return !isSalvarPermitido();
 	}
 	
 	public long getDiasCriacao(){
