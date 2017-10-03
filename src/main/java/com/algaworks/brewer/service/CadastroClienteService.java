@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.algaworks.brewer.model.Cliente;
 import com.algaworks.brewer.repository.Clientes;
 import com.algaworks.brewer.service.exception.CpfCnpjClienteJaCadastradoException;
+import com.algaworks.brewer.service.exception.ImpossivelExcluirEntidadeException;
 
 @Service
 public class CadastroClienteService {
@@ -24,5 +25,16 @@ public class CadastroClienteService {
 			throw new CpfCnpjClienteJaCadastradoException("CPF/CNPJ já cadastrado");
 		}
 		clientes.save(cliente);
+	}
+
+	@Transactional
+	public void exluir(Cliente cliente) {
+	
+		try{
+			clientes.delete(cliente.getCodigo());
+		}catch(ImpossivelExcluirEntidadeException e){
+			throw new ImpossivelExcluirEntidadeException("Não foi possível apagar o cliente.");
+		}
+		
 	}
 }
