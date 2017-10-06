@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.algaworks.brewer.model.Estilo;
 import com.algaworks.brewer.repository.Estilos;
+import com.algaworks.brewer.service.exception.ImpossivelExcluirEntidadeException;
 import com.algaworks.brewer.service.exception.NomeEstiloJaCadastradoException;
 
 @Service
@@ -26,5 +27,16 @@ public class CadastroEstiloService {
 		}
 		
 		return estilos.saveAndFlush(estilo);
+	}
+
+	@Transactional
+	public void excluir(Estilo estilo) {
+		
+		try {
+			estilos.delete(estilo.getCodigo());
+		}catch(ImpossivelExcluirEntidadeException e) {
+			throw new ImpossivelExcluirEntidadeException("Não foi possível apagar o estilo.");
+		}
+		
 	}
 }
