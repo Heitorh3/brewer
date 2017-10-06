@@ -72,7 +72,7 @@ public class ClientesController {
 		return clientes.findByNomeStartingWithIgnoreCase(nome);
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping({"/novo", "{\\+d}"})	
 	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes){
 		if(result.hasErrors()){
 			return novo(cliente);
@@ -99,6 +99,15 @@ public class ClientesController {
 		return ResponseEntity.ok().build();
 	}
 
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable("codigo")Long codigo){
+		Cliente cliente = clientes.buscarComEstados(codigo);
+		ModelAndView mv = novo(cliente);
+		
+		mv.addObject(cliente);
+		
+		return mv;
+	}
 	
 	private void validarTamanhoNome(String nome) {
 		if (StringUtils.isEmpty(nome) || nome.length() < 3) {

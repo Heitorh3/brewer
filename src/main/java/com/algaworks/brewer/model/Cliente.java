@@ -128,6 +128,10 @@ public class Cliente implements Serializable{
 		this.endereco = endereco;
 	}
 
+	public boolean isNovo(){
+		return codigo == null;
+	}
+	
 	@Transient
 	public String getCpfSemFormatacao(){
 		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
