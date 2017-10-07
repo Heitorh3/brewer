@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.algaworks.brewer.model.Cidade;
 import com.algaworks.brewer.repository.Cidades;
+import com.algaworks.brewer.service.exception.ImpossivelExcluirEntidadeException;
 import com.algaworks.brewer.service.exception.NomeCidadeJaCadastradoException;
 
 @Service
@@ -25,5 +26,15 @@ public class CadastroCidadeService {
 		}
 		
 		cidades.save(cidade);
+	}
+
+	@Transactional
+	public void excluir(Cidade cidade) {
+		try {
+			cidades.delete(cidade.getCodigo());
+		}catch(ImpossivelExcluirEntidadeException e) {
+			throw new ImpossivelExcluirEntidadeException("Não foi possível apagar a cidade."); 
+		}
+		
 	}
 }

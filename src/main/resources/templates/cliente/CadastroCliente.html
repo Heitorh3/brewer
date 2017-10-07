@@ -133,8 +133,8 @@
 				</div>
 
 				<div class="col-sm-4  form-group">
-					<label for="estado">Estado</label> <select id="estado"
-						class="form-control" th:field="*{endereco.estado.nome}">
+					<label for="estado">Estado</label> 
+						<select id="estado" class="form-control" th:field="*{endereco.cidade.estado}">
 						<option value="">Selecione o estado</option>
 						<option th:each="estado : ${estados}" th:value="${estado.codigo}"
 							th:text="${estado.nome}">Adocicada</option>

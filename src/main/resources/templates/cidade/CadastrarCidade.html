@@ -15,7 +15,9 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-10">
-					<h1>Cadastrar cidade</h1>
+					<h1 th:if="${cidade.novo}">Cadastro de cidade</h1>
+					<h1 th:unless="${cidade.novo}">Edição de cidade -
+						[[${cidade.nome}]]</h1>
 				</div>
 
 				<div class="col-sm-2">
@@ -31,9 +33,12 @@
 	</div>
 
 	<div class="container-fluid">
-		<form method="POST" th:object="${cidade}" th:action="@{/cidades/nova}">
+		<form method="POST" th:object="${cidade}" 
+			th:action="${cidade.novo} ? @{/cidade/nova} : @{/cidades/{codigo}(codigo=${cidade.codigo})}">
+		
 
 			<brewer:message />
+			<input type="hidden" th:field="*{codigo}" />
 
 			<div class="row">
 				<div class="col-sm-3  form-group  bw-required"

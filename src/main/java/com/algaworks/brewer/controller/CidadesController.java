@@ -11,9 +11,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,10 +26,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.brewer.controller.page.PageWrapper;
 import com.algaworks.brewer.model.Cidade;
+import com.algaworks.brewer.model.TipoPessoa;
 import com.algaworks.brewer.repository.Cidades;
 import com.algaworks.brewer.repository.Estados;
 import com.algaworks.brewer.repository.filter.CidadeFilter;
 import com.algaworks.brewer.service.CadastroCidadeService;
+import com.algaworks.brewer.service.exception.ImpossivelExcluirEntidadeException;
 import com.algaworks.brewer.service.exception.NomeCidadeJaCadastradoException;
 
 @Controller
@@ -50,7 +55,7 @@ public class CidadesController {
 	}
 	
 	
-	@PostMapping("/nova")
+	@PostMapping({"/nova", "{\\+d}"})
 	@CacheEvict(value = "cidades", key = "#cidade.estado.codigo", condition = "#cidade.temEstado()")
 	public ModelAndView salvar(@Valid Cidade cidade, BindingResult result, RedirectAttributes attributes){
 		if(result.hasErrors()){
@@ -89,6 +94,29 @@ public class CidadesController {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {	}
 		return cidades.findByEstadoCodigo(codigoEstado);
+	}
+	
+	@DeleteMapping("/{codigo}")
+	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("codigo")Cidade cidade){
+		try {
+			cadastroCidadeService.excluir(cidade);
+		}catch(ImpossivelExcluirEntidadeException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+		
+		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping("/{codigo}")
+	public  ModelAndView editar(@PathVariable("codigo")Long codigo) {
+		Cidade cidade = cidades.buscarCidadeComEstados(codigo);
+		
+		ModelAndView mv = novo(cidade);
+		mv.addObject(cidade);
+		mv.addObject("tiposPessoas", TipoPessoa.values());
+		mv.addObject("estados", this.estados.findAll());
+		
+		return mv;
 	}
 	
 }

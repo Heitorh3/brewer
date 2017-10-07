@@ -14,4 +14,5 @@ public interface Cidades extends JpaRepository<Cidade, Long>, CidadesQueries {
 	public List<Cidade> findByEstadoCodigo(Long codigoEstado);
 
 	public Optional<Cidade> findByNomeAndEstado(String nome, Estado codigo);
+
 }

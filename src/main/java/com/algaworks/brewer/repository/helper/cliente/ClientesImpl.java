@@ -48,9 +48,8 @@ public class ClientesImpl implements ClientesQueries {
 	public Cliente buscarComEstados(Long codigo) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Cliente.class);
 		criteria.createAlias("endereco.cidade", "c", JoinType.LEFT_OUTER_JOIN);
-		criteria.createAlias("c.estado", "e", JoinType.LEFT_OUTER_JOIN);
+		criteria.createAlias("endereco.cidade.estado", "e", JoinType.LEFT_OUTER_JOIN);
 		criteria.add(Restrictions.eq("codigo", codigo));
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		return (Cliente) criteria.uniqueResult();
 	}
