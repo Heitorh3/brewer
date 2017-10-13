@@ -54,6 +54,14 @@ public class ClientesImpl implements ClientesQueries {
 		return (Cliente) criteria.uniqueResult();
 	}
 	
+	@Transactional(readOnly = true)
+	@Override
+	public Long totalClientes() {
+		Criteria criteria = manager.unwrap(Session.class).createCriteria(Cliente.class);
+		criteria.setProjection(Projections.rowCount());
+		return (Long)criteria.uniqueResult();
+	}
+	
 	private Long total(ClienteFilter filtro) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Cliente.class);
 		this.adicionarFiltro(filtro, criteria);
@@ -74,5 +82,4 @@ public class ClientesImpl implements ClientesQueries {
 		}
 	}
 
-	
 }

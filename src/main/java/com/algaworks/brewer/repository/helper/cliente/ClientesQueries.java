@@ -12,4 +12,5 @@ public interface ClientesQueries {
 	
 	public Cliente buscarComEstados(Long codigo);
 
+	public Long totalClientes();
 }
