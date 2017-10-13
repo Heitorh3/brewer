@@ -39,16 +39,13 @@ public class Estilo implements Serializable{
 		this.codigo = codigo;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
 
 	public List<Cerveja> getCervejas() {
 		return cervejas;
@@ -58,9 +55,10 @@ public class Estilo implements Serializable{
 		this.cervejas = cervejas;
 	}
 	
-	public boolean isNovo() {
-		return this.codigo == null;
+	public boolean isNovo(){
+		return codigo == null;
 	}
+	
 
 	@Override
 	public int hashCode() {

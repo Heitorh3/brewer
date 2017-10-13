@@ -34,7 +34,7 @@
 
 	<div class="container-fluid">
 		<form method="POST" th:object="${cidade}" 
-			th:action="${cidade.novo} ? @{/cidade/nova} : @{/cidades/{codigo}(codigo=${cidade.codigo})}">
+			th:action="${cidade.novo} ? @{/cidades/nova} : @{/cidades/{codigo}(codigo=${cidade.codigo})}">
 		
 
 			<brewer:message />
