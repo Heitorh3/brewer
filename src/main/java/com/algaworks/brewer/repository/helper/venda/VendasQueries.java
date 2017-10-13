@@ -1,5 +1,7 @@
 package com.algaworks.brewer.repository.helper.venda;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,4 +13,10 @@ public interface VendasQueries {
 	Page<Venda> filtrar(VendaFilter filtro, Pageable pageable);
 	
 	Venda buscarComItens(Long codigo);
+	
+	BigDecimal valorTotalNoAno();
+	
+	BigDecimal valorTotalNoMes();
+	
+	BigDecimal valorTicketMedioNoAno();
 }
