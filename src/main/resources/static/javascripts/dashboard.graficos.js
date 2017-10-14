@@ -41,7 +41,59 @@ Brewer.GraficoVendaPorMes = (function() {
 	
 }());
 
+Brewer.GraficoVendasPorOrigem = (function() {
+	
+	function GraficoVendasPorOrigem() {
+		this.ctx = $('#graficoVendaPorOrigem')[0].getContext('2d');
+	}
+	
+	GraficoVendasPorOrigem.prototype.iniciar = function(){
+		
+		$.ajax({
+			url: 'vendas/totalPorOrigem',
+			method: 'GET', 
+			success: onDadosRecebidos.bind(this)
+		});
+		
+	}
+	
+	function onDadosRecebidos(vendaPorOrigem){
+		var meses = [];
+		var cervejasNacionais = [];
+		var cervejasInternacionais = [];
+		
+		vendaPorOrigem.forEach(function(obj) {
+			meses.unshift(obj.mes);
+			cervejasNacionais.unshift(obj.totalNacional);
+			cervejasInternacionais.unshift(obj.totalInternacional)
+		});
+		
+		
+		var graficoVendasPorOrigem = new Chart(this.ctx, {
+		    type: 'bar',
+		    data: {
+		    	labels: meses,
+		    	datasets: [{
+		    		label: 'Nacional',
+		    		backgroundColor: "rgba(220,220,220,0.5)",
+	                data: cervejasNacionais
+		    	},
+		    	{
+		    		label: 'Internacional',
+		    		backgroundColor: "rgba(26,179,148,0.5)",
+	                data: cervejasInternacionais
+		    	}]
+		    }
+		});
+	}
+	
+	return GraficoVendasPorOrigem;
+}());
+
 $(function() {
 	var graficoVendaPorMes = new Brewer.GraficoVendaPorMes();
 	graficoVendaPorMes.iniciar();
+	
+	var graficoVendaPorOrigem = new Brewer.GraficoVendasPorOrigem();
+	graficoVendaPorOrigem.iniciar();
 });

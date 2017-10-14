@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.algaworks.brewer.dto.VendaMes;
+import com.algaworks.brewer.dto.VendaOrigem;
 import com.algaworks.brewer.model.StatusVenda;
 import com.algaworks.brewer.model.TipoPessoa;
 import com.algaworks.brewer.model.Venda;
@@ -108,15 +109,36 @@ public class VendasImpl implements VendasQueries {
 		for (int i = 1; i <= 6; i++) {
 			String mesIdeal = String.format("%d/%02d", hoje.getYear(), hoje.getMonthValue());
 			
+			
 			boolean possuiMes = vendasMes.stream().filter(v -> v.getMes().equals(mesIdeal)).findAny().isPresent();
 			if (!possuiMes) {
 				vendasMes.add(i - 1, new VendaMes(mesIdeal, 0));
+			}
+			hoje = hoje.minusMonths(1);
+		}
+		
+		return vendasMes;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<VendaOrigem> totalPorOrigem() {
+		
+		List<VendaOrigem> vendasOrigem = manager.createNamedQuery("Vendas.porOrigem").getResultList();
+		
+		LocalDate hoje = LocalDate.now();
+		for (int i = 1; i <= 6; i++) {
+			String mesIdeal = String.format("%d/%02d",hoje.getYear(), hoje.getMonthValue());
+			
+			boolean possuiMes = vendasOrigem.stream().filter(v -> v.getMes().equals(mesIdeal)).findAny().isPresent();
+			if(!possuiMes) {
+				vendasOrigem.add(i -1, new VendaOrigem(mesIdeal, 0,0));
 			}
 			
 			hoje = hoje.minusMonths(1);
 		}
 		
-		return vendasMes;
+		return vendasOrigem;
 	}
 	
 	private Long total(VendaFilter filtro) {
