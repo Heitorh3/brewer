@@ -5,12 +5,18 @@ node {
     stage ('SCM Checkout') {
         git 'https://github.com/Heitorh3/brewer'
     }
-
+    
+    stage ('Compile Stage') {
+        sh "${mvnHome}/bin/mvn clean compile"
+    }
+ 
     stage ('Testing Stage') {
         sh "${mvnHome}/bin/mvn test"       
     }
-
-    stage ('Compile Stage') {
-        sh "${mvnHome}/bin/mvn package"
+ 
+    stage ('Info Stage') {
+        sh "${mvnHome}/bin/mvn info"       
     }
+
+    
 }
