@@ -56,7 +56,7 @@ pipeline {
                     }
                 }
             }
-        }
+        
       /*   stage('Pull artifact') {
             steps {
                 step([  $class: 'CopyArtifact',
