@@ -1,33 +1,6 @@
-pipeline {
-    agent any
-    
-    stages {
-        
-        stage ('Compile Stage') {
-
-            steps {
-                withMaven(maven : 'maven_3.6.0') {
-                    sh 'mvn clean compile'
-                }
-            }
-        }
-
-        stage ('Testing Stage') {
-
-            steps {
-                withMaven(maven : 'maven_3.6.0') {
-                    sh 'mvn test'
-                }
-            }
-        }
-
-
-        stage ('Deployment Stage') {
-            steps {
-                withMaven(maven : 'maven_3.6.0') {
-                    sh 'mvn info'
-                }
-            }
-        }
-    }
+node {
+ stage ('Compile Stage') {
+            def mvnHome = tool name: 'maven_3.6.0', type: 'maven'
+            sh "${mvnHome}/bin/mvn packege"
+      }
 }
