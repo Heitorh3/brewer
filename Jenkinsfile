@@ -14,9 +14,11 @@ node {
         sh "${mvnHome}/bin/mvn test"       
     }
  
-    stage ('Info Stage') {
-        sh "${mvnHome}/bin/mvn info"       
+    stage ('Testing and Compile Stage') {
+        sh "${mvnHome}/bin/mvn test-compile"       
     }
-
-    
+ 
+    stage ('Packageing Stage') {
+        sh "${mvnHome}/bin/mvn package"       
+    }    
 }
