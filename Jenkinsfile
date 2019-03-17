@@ -27,7 +27,7 @@ pipeline {
         stage ('Testing and Compile Stage') {
             steps {
                 sh "mvn test-compile"       
-            }
+            } 
         }
        
         stage('Example') {
