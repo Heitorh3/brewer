@@ -47,9 +47,7 @@ pipeline {
         stage('Example Deploy') {
             when {
                 branch 'master'
-                anyOf {
                     environment name: 'DEPLOY_TO', value: 'master'
-                    environment name: 'DEPLOY_TO', value: 'staging'
                 }
             }
             steps {
