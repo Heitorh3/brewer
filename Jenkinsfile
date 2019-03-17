@@ -67,7 +67,7 @@ pipeline {
                 id "simple-input"
             }
             steps {
-                echo 'Deploying'
+                echo 'Production'
             }
         }
         stage ('Package Stage') {
