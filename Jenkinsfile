@@ -43,6 +43,16 @@ pipeline {
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         }
+        stage('Copy artifact') {
+            steps {
+                copyArtifacts 
+                    filter: '*.war', 
+                    fingerprintArtifacts: true, 
+                    projectName: 'Brewer Pipeline', 
+                    selector: lastSuccessful(), 
+                    target: 'deploy'
+            }
+        }
       /*   stage('Pull artifact') {
             steps {
                 step([  $class: 'CopyArtifact',
