@@ -31,16 +31,16 @@ pipeline {
         }
        
         stage('Example') {
-            input {
+            def feedback = input {
                 message "Should we continue?"
                 ok "Yes, we should."
-                submitter "alice,bob"
+                //submitter "alice,bob"
                 parameters {
                     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
                 }
             }
             steps {
-                echo "Hello, ${PERSON}, nice to meet you."
+                echo "Hello, ${feedback.submitter}, nice to meet you."
             }
         }
         stage('Copy archive') {
@@ -52,7 +52,7 @@ pipeline {
                         projectName: '${JOB_NAME}', 
                         selector: lastSuccessful(), 
                         target: 'deploy'
-                      ])
+                      ]);
                     }
                 }
             }
