@@ -43,7 +43,7 @@ pipeline {
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         }
-         stage('Pull artifact') {
+      /*   stage('Pull artifact') {
             steps {
                 step([  $class: 'CopyArtifact',
                         filter: '*.war',
@@ -54,11 +54,6 @@ pipeline {
                 //unzip zipFile: 'test.zip', dir: './archive_new'
                 //sh 'cat archive_new/test.txt'
             }
-        }
-    }
-    post {
-        always {
-            junit 'build/reports/**/*.xml'
-        }
+        }*/
     }
 }
