@@ -1,4 +1,5 @@
-node {
+pipeline {
+    agent any
  
     def mvnHome = tool name: 'maven_3.6.0', type: 'maven'
  
