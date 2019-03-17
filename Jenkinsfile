@@ -31,10 +31,6 @@ pipeline {
         }
        
         stage('Example') {
-            when {
-                beforeInput true
-                branch 'master'
-            }
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
