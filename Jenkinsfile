@@ -56,6 +56,20 @@ pipeline {
             }
         }
         
+        stage('Copy archive') {
+            steps {
+                script {
+                    step([$class: 'CopyArtifact', 
+                        filter: 'target/*.war', 
+                        fingerprintArtifacts: true, 
+                        projectName: '${JOB_NAME}', 
+                        selector: lastSuccessful(), 
+                        target: 'deploy'
+                      ])
+                    }
+                }
+            }
+        
       /*   stage('Pull artifact') {
             steps {
                 step([  $class: 'CopyArtifact',
