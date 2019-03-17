@@ -48,7 +48,6 @@ pipeline {
             when {
                 branch 'master'
                     environment name: 'DEPLOY_TO', value: 'master'
-                }
             }
             steps {
                 echo "Deploying - ${DEPLOY_TO}"
