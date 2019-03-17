@@ -43,11 +43,18 @@ pipeline {
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         }
-        stage('Copy archive') {
+        
+        stage ('Package Stage') {
+            steps {
+                sh "mvn package"       
+            }
+        }
+        
+        stage('Copy archive Stage') {
             steps {
                 script {
                     step([$class: 'CopyArtifact', 
-                        filter: 'target/brewer-1.0.0-SNAPSHOT.war', 
+                        filter: 'target/*.war', 
                         fingerprintArtifacts: true, 
                         projectName: '${JOB_NAME}', 
                         selector: lastSuccessful(), 
