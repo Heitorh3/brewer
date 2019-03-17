@@ -31,16 +31,33 @@ pipeline {
         }
        
         stage('Example') {
+            when {
+                beforeInput true
+                branch 'production'
+            }
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
-                //submitter "alice,bob"
+                submitter "alice,bob"
                 parameters {
                     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
                 }
             }
             steps {
                 echo "Hello, ${PERSON}, nice to meet you."
+            }
+        }
+        
+        stage('Example Deploy') {
+            when {
+                expression { BRANCH_NAME ==~ /(production|staging)/ }
+                anyOf {
+                    environment name: 'DEPLOY_TO', value: 'production'
+                    environment name: 'DEPLOY_TO', value: 'staging'
+                }
+            }
+            steps {
+                echo 'Deploying'
             }
         }
         
