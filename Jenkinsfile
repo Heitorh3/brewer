@@ -10,12 +10,17 @@ pipeline {
         stage ('SCM Checkout') {
             steps {
                 git 'https://github.com/Heitorh3/brewer'
-            }
-            
+            }   
         }
         stage ('Compile Stage') {
             steps {
                 sh "mvn clean compile"
+            }
+        }
+        
+        stage ('Testing and Compile Stage') {
+            steps {
+                sh "mvn test-compile"       
             }
         }
     }
