@@ -43,10 +43,10 @@ pipeline {
                 echo "Hello, ${PERSON}, nice to meet you."
             }
         }
-        /*
+        
         stage('Example Deploy') {
             when {
-                expression { BRANCH_NAME ==~ /(production|staging)/ }
+                branch 'production'
                 anyOf {
                     environment name: 'DEPLOY_TO', value: 'production'
                     environment name: 'DEPLOY_TO', value: 'staging'
@@ -56,7 +56,7 @@ pipeline {
                 echo 'Deploying'
             }
         }
-        */
+        
         stage ('Package Stage') {
             steps {
                 sh "mvn package"       
