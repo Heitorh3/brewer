@@ -46,17 +46,30 @@ pipeline {
         
         stage('Example Deploy') {
             when {
-                branch 'production'
+                branch 'master'
                 anyOf {
-                    environment name: 'DEPLOY_TO', value: 'production'
+                    environment name: 'DEPLOY_TO', value: 'master'
                     environment name: 'DEPLOY_TO', value: 'staging'
                 }
+            }
+            steps {
+                echo "Deploying - ${DEPLOY_TO}"
+            }
+        }
+        
+         stage('Example Deploy') {
+            when {
+                beforeInput true
+                branch 'production'
+            }
+            input {
+                message "Deploy to production?"
+                id "simple-input"
             }
             steps {
                 echo 'Deploying'
             }
         }
-        
         stage ('Package Stage') {
             steps {
                 sh "mvn package"       
