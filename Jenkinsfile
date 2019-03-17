@@ -45,12 +45,13 @@ pipeline {
         }
         stage('Copy artifact') {
             steps {
-                copyArtifacts 
+                copyArtifacts {
                     filter: '*.war', 
                     fingerprintArtifacts: true, 
                     projectName: 'Brewer Pipeline', 
                     selector: lastSuccessful(), 
                     target: 'deploy'
+                }
             }
         }
       /*   stage('Pull artifact') {
