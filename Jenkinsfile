@@ -50,16 +50,18 @@ pipeline {
             }
         }
         
+        stage ('Gerando o artefato Stage') {
+            steps {
+                archive 'target/*.war'      
+            }
+        }
+        
         stage('Copy archive Stage') {
             steps {
                 script {
-                    step([$class: 'CopyArtifact', 
-                        filter: 'target/*.war', 
-                        fingerprintArtifacts: true, 
-                        projectName: '${JOB_NAME}', 
-                        selector: lastSuccessful(), 
-                        target: 'deploy'
-                      ]);
+                    step(
+                        copyArtifacts filter: 'target/*.war', fingerprintArtifacts: true, projectName: 'Brewer Pipeline'
+                        );
                     }
                 }
             }
