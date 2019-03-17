@@ -40,7 +40,7 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${submitter}, nice to meet you."
+                echo "Hello, ${PERSON}, nice to meet you."
             }
         }
         stage('Copy archive') {
