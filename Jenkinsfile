@@ -57,7 +57,7 @@ pipeline {
             }
         }
         
-         stage('Example Deploy') {
+         stage('Example Production') {
             when {
                 beforeInput true
                 branch 'production'
