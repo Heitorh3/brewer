@@ -31,7 +31,7 @@ pipeline {
         }
        
         stage('Example') {
-            def feedback = input {
+            input {
                 message "Should we continue?"
                 ok "Yes, we should."
                 //submitter "alice,bob"
@@ -40,7 +40,7 @@ pipeline {
                 }
             }
             steps {
-                echo "Hello, ${feedback.submitter}, nice to meet you."
+                echo "Hello, ${submitter}, nice to meet you."
             }
         }
         stage('Copy archive') {
