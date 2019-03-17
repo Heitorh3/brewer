@@ -56,16 +56,6 @@ pipeline {
             }
         }
         
-        stage('Copy archive Stage') {
-            steps {
-                script {
-                    step(
-                        copyArtifacts filter: 'target/*.war', fingerprintArtifacts: true, projectName: 'Brewer Pipeline'
-                        );
-                    }
-                }
-            }
-        
       /*   stage('Pull artifact') {
             steps {
                 step([  $class: 'CopyArtifact',
