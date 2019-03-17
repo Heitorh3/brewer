@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     step([$class: 'CopyArtifact', 
-                        filter: 'target/*.war', 
+                        filter: 'target/brewer-1.0.0-SNAPSHOT.war', 
                         fingerprintArtifacts: true, 
                         projectName: '${JOB_NAME}', 
                         selector: lastSuccessful(), 
