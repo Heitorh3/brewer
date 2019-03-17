@@ -33,7 +33,7 @@ pipeline {
         stage('Example') {
             when {
                 beforeInput true
-                branch 'production'
+                branch 'master'
             }
             input {
                 message "Should we continue?"
