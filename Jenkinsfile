@@ -50,7 +50,7 @@ pipeline {
             }
         }
         
-        stage ('Gerando o artefato Stage') {
+        stage ('Build artfact Stage') {
             steps {
                 archive 'target/*.war'      
             }
