@@ -71,6 +71,13 @@ pipeline {
             }
         }
         
+        stage('Copy archive'){
+            always {
+                archiveArtifacts artifacts: 'target/*.war', 
+                onlyIfSuccessful: true
+            }
+        }
+        /*
         stage('Copy archive') {
             steps {
                 script {
@@ -86,7 +93,7 @@ pipeline {
                 }
             }
         
-      /*   stage('Pull artifact') {
+         stage('Pull artifact') {
             steps {
                 step([  $class: 'CopyArtifact',
                         filter: '*.war',
