@@ -77,7 +77,9 @@ pipeline {
                     fingerprintArtifacts: true, 
                     projectName: '${JOB_NAME}', 
                     selector: specific('${BUILD_NUMBER}') 
-                 sh "cp target/brewer.war /opt/tomcat8/webapps/"
+                 sh "cp target/'${JOB_NAME}' /opt/tomcat8/webapps/"
+                 sh "cd /opt/tomcat8/bin"
+                 sh " ./startup.sh" 
                 }
             
             }
