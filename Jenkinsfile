@@ -77,8 +77,9 @@ pipeline {
                     fingerprintArtifacts: true, 
                     projectName: '${JOB_NAME}', 
                     selector: specific('${BUILD_NUMBER}'),
-                    sh "cp target/*.war /opt/tomcat8/webapps/"
-                    sh "cd /opt/tomcat8/bin; ./startup.sh"
+                    sh "cp target/${JOB_NAME} /opt/tomcat8/webapps/",
+                    sh "cd /opt/tomcat8/bin",
+                    sh " ./startup.sh"
                 }
             }
         /*
