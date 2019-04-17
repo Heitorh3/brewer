@@ -33,7 +33,7 @@ pipeline {
         
         stage ('Migration database Stage') {
             steps {
-               sh "mvn -Dflyway.user=brewer -Dflyway.password=Yw2Y4VC5drrwdMZj -Dflyway.url=jdbc:mysql://localhost/brewer?useSSL=false" 
+               sh "mvn -Dflyway.user=brewer -Dflyway.password=Yw2Y4VC5drrwdMZj -Dflyway.url=jdbc:mysql://localhost/brewer?useSSL=false flyway:migrate" 
             }
         }
         
