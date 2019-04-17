@@ -72,9 +72,8 @@ pipeline {
         }
         
         stage('Copy archive') {
-            steps {
-                echo '${JOB_NAME}'
-                copyArtifacts filter: 'target/brewer-1.0.0-SNAPSHOT.war', 
+            steps {               
+                copyArtifacts filter: 'target/*.war', 
                     fingerprintArtifacts: true, 
                     projectName: '${JOB_NAME}', 
                     selector: specific('${BUILD_NUMBER}')
