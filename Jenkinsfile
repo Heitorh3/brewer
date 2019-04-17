@@ -59,6 +59,12 @@ pipeline {
             }
         }
         
+        stage ('Install Stage') {
+            steps {
+                sh "mvn install"       
+            }
+        }
+        
         stage ('Build artfact Stage') {
             steps {
                 archive 'target/*.war'      
@@ -71,6 +77,7 @@ pipeline {
                     step([$class: 'CopyArtifact', 
                         filter: 'target/*.war', 
                         fingerprintArtifacts: true, 
+                        allowEmptyArchive: true
                         projectName: '${JOB_NAME}', 
                         selector: lastSuccessful(), 
                         target: 'deploy'
