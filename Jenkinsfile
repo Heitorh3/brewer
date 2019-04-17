@@ -33,13 +33,7 @@ pipeline {
         
         stage ('Migration database Stage') {
             steps {
-                flywayRunner {
-                    name('flyway')
-                    command('migrate')
-                    url('jdbc:mysql://localhost:3306/brewer')
-                    locations('filesystem:$WORKSPACE/dbscripts')
-                    credentialsId('44620c50-1589-4617-a677-7563985e46e1')
-              }      
+               sh "mvn -Dflyway.user=brewer -Dflyway.password=Yw2Y4VC5drrwdMZj -Dflyway.url=jdbc:mysql://localhost/brewer?useSSL=false" 
             }
         }
         
