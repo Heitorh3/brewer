@@ -77,7 +77,7 @@ pipeline {
                     step([$class: 'CopyArtifact', 
                         filter: 'target/*.war', 
                         fingerprintArtifacts: true, 
-                        allowEmptyArchive: true
+                        allowEmptyArchive: true,
                         projectName: '${JOB_NAME}', 
                         selector: lastSuccessful(), 
                         target: 'deploy'
