@@ -71,28 +71,20 @@ pipeline {
             }
         }
         
-        stage('Copy archive'){
-            always {
-                archiveArtifacts artifacts: 'target/*.war', 
-                onlyIfSuccessful: true
-            }
-        }
-        /*
         stage('Copy archive') {
             steps {
                 script {
                     step([$class: 'CopyArtifact', 
-                        filter: 'target/*.war', 
+                        filter: 'target/brewer-1.0.0-SNAPSHOT.war', 
                         fingerprintArtifacts: true, 
                         allowEmptyArchive: true,
                         projectName: '${JOB_NAME}', 
-                        selector: lastSuccessful(), 
-                        target: 'deploy'
+                        selector: lastSuccessful()
                       ])
                     }
                 }
             }
-        
+        /*
          stage('Pull artifact') {
             steps {
                 step([  $class: 'CopyArtifact',
