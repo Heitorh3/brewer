@@ -73,18 +73,23 @@ pipeline {
         
         stage('Copy archive') {
             steps {
-                script {
-                    step([$class: 'CopyArtifact', 
+                echo '${JOB_NAME}'
+                copyArtifacts filter: 'target/brewer-1.0.0-SNAPSHOT.war', 
+                    fingerprintArtifacts: true, 
+                    projectName: '${JOB_NAME}', 
+                    selector: specific('${BUILD_NUMBER}')
+                }
+            }
+        /*
+        
+         step([$class: 'CopyArtifact', 
                         filter: 'target/brewer-1.0.0-SNAPSHOT.war', 
                         fingerprintArtifacts: true, 
                         allowEmptyArchive: true,
                         projectName: '${JOB_NAME}', 
                         selector: lastSuccessful()
                       ])
-                    }
-                }
-            }
-        /*
+        
          stage('Pull artifact') {
             steps {
                 step([  $class: 'CopyArtifact',
