@@ -76,7 +76,9 @@ pipeline {
                 copyArtifacts filter: 'target/*.war', 
                     fingerprintArtifacts: true, 
                     projectName: '${JOB_NAME}', 
-                    selector: specific('${BUILD_NUMBER}')
+                    selector: specific('${BUILD_NUMBER}'),
+                    sh "cp ${workspace}/target/*.war /opt/tomcat8/webapps/"
+                    sh "cd /opt/tomcat8/bin; ./startup.sh"
                 }
             }
         /*
