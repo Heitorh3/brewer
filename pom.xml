@@ -6,6 +6,8 @@
 	<artifactId>brewer</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
+	<name>brewer</name>
+	<description>Sistema de Gestão de Pedidos de Vendas de Cerveja</description>
 	<packaging>war</packaging>
 
 	<properties>
