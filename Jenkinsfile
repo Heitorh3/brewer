@@ -76,8 +76,7 @@ pipeline {
                 copyArtifacts filter: 'target/*.war', 
                     fingerprintArtifacts: true, 
                     projectName: '${JOB_NAME}', 
-                    selector: specific('${BUILD_NUMBER}'),
-                    sh "cp target/brewer.war /opt/tomcat8/webapps/"                   
+                    selector: specific('${BUILD_NUMBER}')                 
                 }
             }
         /*
