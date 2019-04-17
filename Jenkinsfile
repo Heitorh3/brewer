@@ -12,66 +12,38 @@ pipeline {
                 git 'https://github.com/Heitorh3/brewer'
             }   
         }
-        stage ('Compile Stage') {
-            steps {
-                sh "mvn clean compile"
-            }
-        }
-        
+         
         stage ('Testing Stage') {
             steps {
                 sh "mvn test"       
             }
         }
         
-        stage ('Testing and Compile Stage') {
+        stage ('Compile Stage') {
             steps {
-                sh "mvn test-compile"       
+                sh "mvn clean compile"
             }
         }
-       
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                //submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
-            steps {
-                echo "Hello, ${PERSON}, nice to meet you."
-            }
-        }
-        
-        stage('Example Deploy') {
-            when {
-                branch 'master'
-            }
-            steps {
-                echo 'Deploying sendo feito na branch master'
-            }
-        }
-        
-        stage ('Package Stage') {
+               
+        stage ('Packaging Stage') {
             steps {
                 sh "mvn package"       
             }
         }
         
-        stage ('Install Stage') {
+        stage ('Migration database Stage') {
             steps {
-                sh "mvn install"       
+                flywayRunner {
+                    name('flyway')
+                    command('migrate')
+                    url('jdbc:mysql://localhost:3306/brewer')
+                    locations('filesystem:$WORKSPACE/dbscripts')
+                    credentialsId('44620c50-1589-4617-a677-7563985e46e1')
+              }      
             }
         }
         
-        stage ('Build artfact Stage') {
-            steps {
-                archive 'target/*.war'      
-            }
-        }
-        
-        stage('Copy archive') {
+        stage('Push artifact') {
             steps {               
                 copyArtifacts filter: 'target/*.war', 
                     fingerprintArtifacts: true, 
