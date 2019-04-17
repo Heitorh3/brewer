@@ -39,10 +39,6 @@ pipeline {
         
         stage('Push artifact') {
             steps {               
-                copyArtifacts filter: 'target/*.war', 
-                    fingerprintArtifacts: true, 
-                    projectName: '${JOB_NAME}', 
-                    selector: specific('${BUILD_NUMBER}') 
                  sh "cp target/*.war /opt/tomcat8/webapps/"
                  sh "/opt/tomcat8/bin/startup.sh"
                 }
