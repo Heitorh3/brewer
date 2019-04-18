@@ -44,6 +44,11 @@ pipeline {
                 }
             
             }
+        stage('Publish report') {
+            steps {  
+                  publishHTML(target: [reportDir: 'target', reportFiles: 'index.html', reportName: 'Testes Instrumentados'])
+            }
+        }
         /*
         
          step([$class: 'CopyArtifact', 
