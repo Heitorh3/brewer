@@ -6,6 +6,8 @@
 	<artifactId>brewer</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
+	<name>brewer</name>
+	<description>Sistema de Gestão de Pedidos de Vendas de Cerveja</description>
 	<packaging>war</packaging>
 
 	<properties>
@@ -45,7 +47,8 @@
 		<spring-data-jpa.version>1.11.1.RELEASE</spring-data-jpa.version>
 
 		<!-- Jackson - JSON -->
-		<jackson-core.version>2.7.5</jackson-core.version>
+		<!--<jackson-core.version>2.7.5</jackson-core.version> -->
+		 <jackson-core.version>2.8.11.1</jackson-core.version>
 
 		<!-- thumbnailator - Gerar Thumbnail -->
 		<!-- https://github.com/coobird/thumbnailator -->
@@ -75,6 +78,7 @@
 	</properties>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
