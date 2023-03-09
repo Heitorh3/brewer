@@ -21,8 +21,8 @@ pipeline {
         
         stage ('Compile Stage') {
             steps {
-                sh "mvn clean compile"
-            }
+                sh "mvn test-compile"       
+            } 
         }
                
         stage ('Building Stage') {
@@ -31,12 +31,36 @@ pipeline {
             }
         }
         
+        stage('Example Deploy') {
+            when {
+                branch 'master'
+                    environment name: 'DEPLOY_TO', value: 'master'
+                }
+            }
         stage ('Migration database Stage') {
+
             steps {
                sh "mvn -Dflyway.user=brewer -Dflyway.password=Yw2Y4VC5drrwdMZj -Dflyway.url=jdbc:mysql://localhost/brewer?useSSL=false flyway:migrate" 
             }
         }
-        
+       production
+         stage('Example Production') {
+            when {
+                beforeInput true
+                branch 'production'
+            }
+            input {
+                message "Deploy to production?"
+                id "simple-input"
+            }
+            steps {
+                echo 'Production'
+            }
+        }
+        stage ('Package Stage') {
+            steps {
+                sh "mvn package"       
+
         stage('Push artifact') {
             steps {               
                  sh "cp target/*.war /opt/tomcat8/webapps/"
